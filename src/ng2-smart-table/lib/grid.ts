@@ -22,7 +22,7 @@ export class Grid {
   }
   
   showActionColumn(): boolean {
-    return this.getSetting('actions.add') || this.getSetting('actions.edit') || this.getSetting('actions.delete');
+    return this.getSetting('actions.activate') || this.getSetting('actions.add') || this.getSetting('actions.edit') || this.getSetting('actions.delete');
   }
 
   getNewRow(): Row {
