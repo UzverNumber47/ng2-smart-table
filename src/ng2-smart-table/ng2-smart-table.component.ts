@@ -23,6 +23,7 @@ export class Ng2SmartTableComponent implements OnChanges {
   @Output() public rowSelect: EventEmitter<any> = new EventEmitter<any>();
   @Output() public userRowSelect: EventEmitter<any> = new EventEmitter<any>();
   @Output() public delete: EventEmitter<any> = new EventEmitter<any>();
+  @Output() public custom: EventEmitter<any> = new EventEmitter<any>();
   @Output() public edit: EventEmitter<any> = new EventEmitter<any>();
   @Output() public create: EventEmitter<any> = new EventEmitter<any>();
 
@@ -40,7 +41,8 @@ export class Ng2SmartTableComponent implements OnChanges {
       columnTitle: 'Actions',
       add: true,
       edit: true,
-      delete: true
+      delete: true,
+      custom: false
     },
     filter: {
       inputClass: '',
@@ -63,6 +65,7 @@ export class Ng2SmartTableComponent implements OnChanges {
       deleteButtonContent: 'Delete',
       confirmDelete: false
     },
+    custom: [],
     attr: {
       id: '',
       class: '',
@@ -144,6 +147,16 @@ export class Ng2SmartTableComponent implements OnChanges {
     } else {
       this.grid.delete(row, this.deleteConfirm);
     }
+    return false;
+  }
+
+  onCustom(custom, row: Row, event): boolean {
+    event.stopPropagation();
+    this.custom.emit({
+      custom: custom,
+      data: row.getData(),
+      source: this.source
+    });
     return false;
   }
 
