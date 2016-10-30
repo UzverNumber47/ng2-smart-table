@@ -39,7 +39,8 @@
     <tr *ngFor="let row of grid.getRows()" (click)="onUserSelectRow(row)" class="ng2-smart-row" [ngClass]="{selected: row.isSelected}">
       <td *ngIf="!row.isInEditing && grid.showActionColumn()" class="ng2-smart-actions">
         <a href="#" *ngIf="grid.getSetting('actions.edit')" class="ng2-smart-action ng2-smart-action-edit-edit" [innerHTML]="grid.getSetting('edit.editButtonContent')" (click)="onEdit(row, $event)"></a>
-        <a href="#" *ngIf="grid.getSetting('actions.delete')" class="ng2-smart-action ng2-smart-action-delete-delete" [innerHTML]="grid.getSetting('delete.deleteButtonContent')" (click)="onDelete(row, $event)"></a>
+        <a href="#" *ngIf="grid.getSetting('actions.delete') && !row.enabled" class="ng2-smart-action ng2-smart-action-delete-delete" [innerHTML]="grid.getSetting('delete.deleteButtonContent')" (click)="onDelete(row, $event)"></a>
+        <a href="#" *ngIf="grid.getSetting('actions.delete') && row.enabled" class="ng2-smart-action ng2-smart-action-delete-delete" [innerHTML]="grid.getSetting('delete.activateButtonContent')" (click)="onDelete(row, $event)"></a>
       </td>
       <td *ngIf="row.isInEditing" class="ng2-smart-actions">
         <a href="#" class="ng2-smart-action ng2-smart-action-edit-save" [innerHTML]="grid.getSetting('edit.saveButtonContent')" (click)="onSave(row, $event)"></a>
