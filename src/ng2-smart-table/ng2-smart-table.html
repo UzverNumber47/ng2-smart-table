@@ -42,7 +42,7 @@
         <a href="#" *ngIf="grid.getSetting('actions.delete') && row.data.enabled" class="ng2-smart-action ng2-smart-action-delete-delete" [innerHTML]="grid.getSetting('delete.deleteButtonContent')" (click)="onDelete(row, $event)"></a>
         <a href="#" *ngIf="grid.getSetting('actions.delete') && !row.data.enabled" class="ng2-smart-action ng2-smart-action-delete-delete" [innerHTML]="grid.getSetting('delete.activateButtonContent')" (click)="onDelete(row, $event)"></a>
 
-        <a *ngFor="let custom of grid.getSetting('custom')" href="#" class="ng2-smart-action ng2-smart-action-custom-custom" [innerHTML]="grid.getSetting('custom.'+custom.name+'.buttonContent')" (click)="onCustom(custom, row, $event)"></a>
+        <a *ngFor="let custom of grid.getSetting('custom')" href="#" class="ng2-smart-action ng2-smart-action-custom-custom" [innerHTML]="custom.buttonContent" (click)="onCustom(custom, row, $event)"></a>
       </td>
       <td *ngIf="row.isInEditing" class="ng2-smart-actions">
         <a href="#" class="ng2-smart-action ng2-smart-action-edit-save" [innerHTML]="grid.getSetting('edit.saveButtonContent')" (click)="onSave(row, $event)"></a>
